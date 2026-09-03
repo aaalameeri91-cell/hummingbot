@@ -135,9 +135,6 @@ def main():
         ]
         package_data["hummingbot"].append("core/cpp/*.cpp")
 
-    if len(sys.argv) > 1 and sys.argv[1] == "build_ext" and is_posix:
-        sys.argv.append(f"--parallel={cpu_count}")
-
     # --- 3. Generate Extensions & Manually Apply Flags ---
     extensions = cythonize(
         cython_sources,
