@@ -64,6 +64,10 @@ class SetupPyTests(unittest.TestCase):
 
         self.assertTrue(setup_calls)
         self.assertEqual(["setup.py", "build_ext"], observed_argv)
+        setup_kwargs = setup_calls[0]
+        self.assertEqual([], setup_kwargs["packages"])
+        self.assertEqual([], setup_kwargs["ext_modules"])
+        self.assertIn("build_ext", setup_kwargs["cmdclass"])
 
 
 if __name__ == "__main__":
