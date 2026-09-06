@@ -1,7 +1,6 @@
 import fnmatch
 import os
 import subprocess
-import sys
 
 import numpy as np
 from Cython.Build import cythonize

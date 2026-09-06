@@ -56,10 +56,10 @@ class SetupPyTests(unittest.TestCase):
 
         with patch.object(module, "find_packages", return_value=[]), \
                 patch.object(module, "cythonize", return_value=[]), \
-                patch.object(module, "setup", side_effect=lambda **kwargs: (observed_argv.extend(module.sys.argv), setup_calls.append(kwargs))), \
+                patch.object(module, "setup", side_effect=lambda **kwargs: (observed_argv.extend(sys.argv), setup_calls.append(kwargs))), \
                 patch.object(module.os, "cpu_count", return_value=8), \
                 patch.object(module.subprocess, "check_output", return_value=b"Linux"), \
-                patch.object(module.sys, "argv", ["setup.py", "build_ext"]):
+                patch("sys.argv", ["setup.py", "build_ext"]):
             module.main()
 
         self.assertTrue(setup_calls)
