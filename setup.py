@@ -1,7 +1,6 @@
 import fnmatch
 import os
 import subprocess
-import sys
 
 import numpy as np
 from Cython.Build import cythonize
@@ -134,9 +133,6 @@ def main():
             "*.pxd", "*.pyx", "*.h"
         ]
         package_data["hummingbot"].append("core/cpp/*.cpp")
-
-    if len(sys.argv) > 1 and sys.argv[1] == "build_ext" and is_posix:
-        sys.argv.append(f"--parallel={cpu_count}")
 
     # --- 3. Generate Extensions & Manually Apply Flags ---
     extensions = cythonize(
